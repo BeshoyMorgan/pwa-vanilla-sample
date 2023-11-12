@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ////////////////task one number a
+        //     fetch('https://jsonplaceholder.typicode.com/users')
+        //   .then(response => response.json())
+        //   .then(json =>{
+        //             json.forEach(e => {
+        //                 console.log(e.name);
+        //             });
+        //   })
+
+
+
+
+
+
+
+
+
+
+        // ////////////////////////////task one number b
+        //   console.log("task one number b");
+        //  async function getUsersNames(){
+        //     try{
+        //    var res= await fetch('https://jsonplaceholder.typicode.com/users');
+        //    //console.log(f);
+        //    var users=await res.json();
+        //    users.forEach(ele => {
+        //     console.log(ele.name);
+
+        //    });
+        //     }catch(e){
+        //         console.log(e);
+        //     }
+        //  }
+        //  getUsersNames();
+
+        /////////////////set 
+        // let stdNames = new Set(["besho", "ali", 'ahmed', 'mona', 'besho']);
+        // console.log(...stdNames);
+        // ////////for of 
+        // for (i of stdNames) {
+        //     console.log(`name = ${i}`);
+        // }
+        /////////////////////////map
+        console.log("/////////////////map ////////////");
+        let stdGrades = new Map(
+          [[  "beshoy", {
+                Grades: [
+                    { Course: "es6", Grade: "Excellent" },
+                    { Course: "js", Grade: "Excellent EX" },
+                    { Course: "jq", Grade: "Excellent brdo " }]
+            }
+        ]]);
+        // stdGrades.forEach((name, grade) => {
+        //     //console.log(grade);
+        //     name.Grades.map(grades => console.log(grades));
+        // });
+        // console.log("/////////////////////////////////////////");
+        // for (var i of stdGrades.values()) {
+        //     console.log(...i.Grades);
+        //     console.log('////////////')
+      //  }
+        console.log(".//////////////////////")
+        for(i of stdGrades){
+            console.log(`name= ${i[0]}`);
+           var user= [...i[1].Grades];
+           user.forEach(e=>console.log(`course=> ${e['Course']} // gread => ${e['Grade']}`))
+           //console.log(user);
+        }
+        //console.log(stdGrades)
+
+
+
+    </script>
+</body>
+
+</html>

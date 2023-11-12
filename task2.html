@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            display: inline-flex;
+            font-size: 25px;
+            padding: 10px;
+            margin: 10px;
+            background-color: aqua;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            width: fit-content;
+            cursor: pointer;
+
+        }
+        h1:hover{
+            background-color: rgba(0, 238, 255, 0.537);
+        }
+        h6{
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px;
+            color: rgb(85, 74, 237);
+        }
+        p{
+            font-size: 15px;
+            color: rgb(72, 70, 70);
+            margin-left: 30px;
+        }
+    #co2{
+        text-align: center;
+        width: 90%;
+        margin: auto;
+    }
+    </style>
+</head>
+<div id="co1"></div>
+<div id="co2"></div>
+
+<body>
+    <script>
+        // async function getUsersNames(){
+        //     try{
+        //    var res= await fetch('https://jsonplaceholder.typicode.com/users');
+        //    //console.log(f);
+        //    var users=await res.json();
+        //    users.forEach(ele => {
+        //     console.log(ele.name);
+        //    });
+        //     }catch(e){
+        //         console.log(e);
+        //     }
+        //  }
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => {
+                let ids=[];
+                json.forEach(e => {
+                    let node = document.createElement("h1");
+                    let textnode = document.createTextNode(e.name);
+                    node.appendChild(textnode);
+                    document.getElementById("co1").appendChild(node);
+                    ids.push(e.id)
+                }
+                );
+                
+                console.log(ids);
+                 getUsers(ids);
+
+            })
+       function getUsers(ids){
+        var alldevs= document.getElementsByTagName("h1");
+            console.log(alldevs.length);
+            for(let i=0;i<alldevs.length;i++){
+                alldevs[i].addEventListener("click",()=>{
+
+                    fetch(`https://jsonplaceholder.typicode.com/posts?userId=${ids[i]}`)
+                    .then(response => response.json())
+                    .then(json=>{
+                        document.getElementById("co2").innerHTML="";  
+console.log(json);
+                        json.forEach(e => {
+                            console.log(e.title);
+                            document.getElementById("co2").innerHTML+=`
+                            <h6>${e.title}</h6>
+                            <p>${e.body}</p>
+                            `;
+                    //     var node = document.createElement("h6");
+                    // var textnode = document.createTextNode(e.title);
+                    // var nodeBost = document.createElement("p");
+                    // var textnodeBost = document.createTextNode(e.body);
+                    // node.appendChild(textnode);
+                    // nodeBost.appendChild(textnodeBost);
+                    // document.body.appendChild(node);
+                    // document.body.appendChild(nodeBost);
+                   // document.write("<hr>")           
+                        });
+                       
+                       // console.log(json);
+                        
+                    })
+                })
+            }
+       }
+
+
+    </script>
+</body>
+
+</html>
